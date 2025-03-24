@@ -1,5 +1,4 @@
 # NC-DHT
-NC-DHT Chord Routing Table Simulation
 
 ## Description
 This project simply simulates Chord DHT routing tables and applies Reed-Solomon erasure coding to provide fault tolerance for routing table data. 
