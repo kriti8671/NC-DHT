@@ -31,17 +31,17 @@ github.com/klauspost/reedsolomon (for erasure coding)
 - types/: shared structs like Quorum,LookupRequest
 
 ## Description
-** 1. Quorum Initialization **
+#### 1. Quorum Initialization 
 - Simulate a quorum Q1 with n peers.
 - Each peer is assigned a private key share using threshold cryptography.
 - Threshold t is set, and t+1 signatures are required for legitimacy.
 
-** 2. Lookup Request + Signature Collection **
+### 2. Lookup Request + Signature Collection
 - A peer constructs a lookup message: [IDp | addp | REQUEST | ts1].
 - Peers in the quorum sign the message using schnorr.Sign(...).
 - Collect t+1 signatures and simulate quorum signature S1.
 
-** 3. Signature Verification **
+###  3. Signature Verification
 - The next quorum verifies S1 using the quorum’s public key.
 - This mimics NC-DHT’s inter-quorum proof of legitimacy.
 - Routing Table Encoding (with Reed-Solomon)
@@ -49,7 +49,7 @@ github.com/klauspost/reedsolomon (for erasure coding)
 - Encoded into dataShards + parityShards using reedsolomon.
 - Metadata like DataShards, ParityShards, and OriginalSize is stored.
 
-** 4. Simulating Shard Loss + Recovery **
+#### 4. Simulating Shard Loss + Recovery 
 - Simulate missing shards by setting them to nil.
 - RS library reconstructs missing data using available shards.
 - Decoded data is parsed back into a JSON routing table.
