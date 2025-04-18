@@ -14,7 +14,7 @@ It is based on the routing mechanism described in the Chord DHT paper and explor
 ## How to Run
 
 Clone this repository and run the program:
-git clone https://github.com/yourusername/nc-dht-chord-simulation.git
+git clone https://github.com/kriti8671/NC-DHT.git
 
 (If using Go 1.16 or later) Initialize the Go module before running go get:
 go mod init yourprojectname
