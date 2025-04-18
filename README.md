@@ -36,12 +36,12 @@ github.com/klauspost/reedsolomon (for erasure coding)
 - Each peer is assigned a private key share using threshold cryptography.
 - Threshold t is set, and t+1 signatures are required for legitimacy.
 
-### 2. Lookup Request + Signature Collection
+#### 2. Lookup Request + Signature Collection
 - A peer constructs a lookup message: [IDp | addp | REQUEST | ts1].
 - Peers in the quorum sign the message using schnorr.Sign(...).
 - Collect t+1 signatures and simulate quorum signature S1.
 
-###  3. Signature Verification
+#### 3. Signature Verification
 - The next quorum verifies S1 using the quorum’s public key.
 - This mimics NC-DHT’s inter-quorum proof of legitimacy.
 - Routing Table Encoding (with Reed-Solomon)
@@ -58,6 +58,9 @@ github.com/klauspost/reedsolomon (for erasure coding)
 
 ## References
 [NC-DHT Paper]( https://ieeexplore.ieee.org/document/10844445)
+
 [Reed-Solomon Go Library](https://github.com/klauspost/reedsolomon)
+
 [Chord DHT Paper]( https://pdos.csail.mit.edu/papers/chord:sigcomm01/chord_sigcomm.pdf)
+
 [Go library](https://pkg.go.dev/go.dedis.ch/kyber/v4)
