@@ -58,12 +58,14 @@ github.com/klauspost/reedsolomon (for erasure coding)
 ## Date:May 7, 2025
 
 This repository contains the implementation, simulation, and evaluation of NC-DHT, a robust and anonymous Distributed Hash Table (DHT) designed for decentralized systems. Inspired by the research paper "NC-DHT: A Robust and Anonymous DHT for Blockchain Systems" by Tseng et al. (2024), this project focuses on enhancing security and fault tolerance through quorum-based routing, Reed-Solomon erasure coding, and threshold signatures.
+
 The project is implemented in:
 
 Go: For encoding/decoding operations using the klauspost/reedsolomon library.
+
 Python: For threshold cryptography (key generation, signing, combining, and verification) using the gitzhou/threshold-signature-demo repository.
 
-Key features include:
+### Key features include:
 
 Simulation of Chord-based routing.
 Reed-Solomon encoding/decoding with recovery from missing shards.
@@ -72,23 +74,22 @@ Time complexity analysis comparing observed vs. theoretical models.
 
 The full details, including benchmarking results and time complexity analysis, are documented in the white paper: Os_Project-2.pdf.
 
-Project Structure
+### Project Structure
 
 /src/go/: Go source code for Reed-Solomon encoding/decoding and quorum-based routing simulation.
 /src/python/: Python source code for threshold cryptography operations.
 /docs/: Contains the white paper (Os_Project-2.pdf).
-/figures/: Contains the benchmark plots referenced in the white paper:
 benchmark_plot.png: Encoding vs Decoding Time vs Number of Quorums.
 keygen500_performance_boxplot.png: Key Generation, Signing, Combining, and Verification Times vs Number of Peers.
 
-Requirements
+### Requirements
 
 Go: Version 1.18 or higher.
 Python: Version 3.8 or higher.
 Go: github.com/klauspost/reedsolomon
 Python: Clone the gitzhou/threshold-signature-demo repository (see instructions below).
 
-Setup and Installation
+#### Setup and Installation
 Clone the Repository:
 git clone https://github.com/<your-username>/nc-dht.git
 cd nc-dht
@@ -101,8 +102,7 @@ Set Up Python:
 Clone the threshold signature demo repository:git clone https://github.com/gitzhou/threshold-signature-demo.git
 cd threshold-signature-demo
 
-
-Running the Code
+#### Running the Code
 Run Go Benchmarks (Encoding/Decoding):
 From the src/go directory, run the benchmarking script (adjust the filename as per your implementation):go run benchmark.go
 This will generate the encoding/decoding performance data (e.g., benchmark_plot.png).
@@ -117,7 +117,7 @@ View Results:
 Benchmark plots are saved in the figures directory.
 Detailed analysis is available in the white paper: Os_Project-2.pdf.
 
-Key Findings
+#### Key Findings
 
 Reed-Solomon Encoding/Decoding:
 Successfully recovers from missing shards but not corrupted shards.
