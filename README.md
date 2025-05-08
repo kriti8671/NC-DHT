@@ -91,7 +91,7 @@ Python: Clone the gitzhou/threshold-signature-demo repository (see instructions 
 
 #### Setup and Installation
 Clone the Repository:
-git clone https://github.com/<your-username>/nc-dht.git
+git clone [https://github.com/<your-username>/nc-dht.git](https://github.com/kriti8671/NC-DHT)
 cd nc-dht
 
 Set Up Go:
@@ -107,31 +107,32 @@ Run Go Benchmarks (Encoding/Decoding):
 From the src/go directory, run the benchmarking script (adjust the filename as per your implementation):go run benchmark.go
 This will generate the encoding/decoding performance data (e.g., benchmark_plot.png).
 
-
 Run Python Benchmarks (Threshold Operations):
 From the src/python directory, run the threshold cryptography benchmarking script:python threshold_benchmark.py
 This will generate the threshold operation performance data (e.g., keygen500_performance_boxplot.png).
 
 
-View Results:
-Benchmark plots are saved in the figures directory.
-Detailed analysis is available in the white paper: Os_Project-2.pdf.
-
 #### Key Findings
 
 Reed-Solomon Encoding/Decoding:
+
 Successfully recovers from missing shards but not corrupted shards.
+
 Encoding/decoding times increase non-linearly with the number of quorums (see Figure 1 in the white paper).
 
 Threshold Operations:
 Key generation complexity: Observed (O(n^{1.35})) vs. theoretical (O(n^2)).
+
 Verification complexity: Observed (O(1)), aligning with theoretical expectations.
+
 See Figure 2 and Table 1 in the white paper for detailed results.
 
 Future Work
 
 Integrate threshold signatures using a stable Go library.
+
 Enhance Reed-Solomon to handle corrupted shard recovery.
+
 Simulate network behavior and test NC-DHT under diverse workloads.
 
 
