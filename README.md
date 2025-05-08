@@ -91,7 +91,8 @@ Python: Clone the gitzhou/threshold-signature-demo repository (see instructions 
 
 #### Setup and Installation
 Clone the Repository:
-git clone [https://github.com/<your-username>/nc-dht.git](https://github.com/kriti8671/NC-DHT)
+
+git clone https://github.com/kriti8671/NC-DHT
 cd nc-dht
 
 Set Up Go:
@@ -114,20 +115,20 @@ This will generate the threshold operation performance data (e.g., keygen500_per
 
 #### Key Findings
 
-Reed-Solomon Encoding/Decoding:
+##### Reed-Solomon Encoding/Decoding:
 
 Successfully recovers from missing shards but not corrupted shards.
 
 Encoding/decoding times increase non-linearly with the number of quorums (see Figure 1 in the white paper).
 
-Threshold Operations:
+##### Threshold Operations:
 Key generation complexity: Observed (O(n^{1.35})) vs. theoretical (O(n^2)).
 
 Verification complexity: Observed (O(1)), aligning with theoretical expectations.
 
 See Figure 2 and Table 1 in the white paper for detailed results.
 
-Future Work
+#### Future Work
 
 Integrate threshold signatures using a stable Go library.
 
