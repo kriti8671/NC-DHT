@@ -1,0 +1,58 @@
+[ 
+  {
+    "num_quorums": 100,
+    "parity_shards": 10,
+    "data_shards": 10,
+    "num_missing_shards": 5,
+    "encoding_time_ms": 0.008542000000000001,
+    "decoding_time_ms": 0.010791
+  },
+  {
+    "num_quorums": 500,
+    "parity_shards": 16,
+    "data_shards": 12,
+    "num_missing_shards": 8,
+    "encoding_time_ms": 0.015625,
+    "decoding_time_ms": 0.014875000000000001
+  },
+  {
+    "num_quorums": 1000,
+    "parity_shards": 24,
+    "data_shards": 13,
+    "num_missing_shards": 10,
+    "encoding_time_ms": 0.034167,
+    "decoding_time_ms": 0.042459000000000004
+  },
+  {
+    "num_quorums": 5000,
+    "parity_shards": 32,
+    "data_shards": 15,
+    "num_missing_shards": 12,
+    "encoding_time_ms": 0.026292,
+    "decoding_time_ms": 0.034249999999999996
+  },
+  {
+    "num_quorums": 10000,
+    "parity_shards": 32,
+    "data_shards": 17,
+    "num_missing_shards": 16,
+    "encoding_time_ms": 0.033457999999999995,
+    "decoding_time_ms": 0.055416
+  },
+  {
+    "num_quorums": 15000,
+    "parity_shards": 32,
+    "data_shards": 18,
+    "num_missing_shards": 16,
+    "encoding_time_ms": 0.043000000000000003,
+    "decoding_time_ms": 0.054625
+  },
+  {
+    "num_quorums": 25000,
+    "parity_shards": 32,
+    "data_shards": 19,
+    "num_missing_shards": 16,
+    "encoding_time_ms": 0.066083,
+    "decoding_time_ms": 0.07125
+  }
+]
