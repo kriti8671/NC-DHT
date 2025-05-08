@@ -76,11 +76,15 @@ The full details, including benchmarking results and time complexity analysis, a
 
 ### Project Structure
 
-/src/go/: Go source code for Reed-Solomon encoding/decoding and quorum-based routing simulation.
-/src/python/: Python source code for threshold cryptography operations.
-/docs/: Contains the white paper (Os_Project-2.pdf).
-benchmark_plot.png: Encoding vs Decoding Time vs Number of Quorums.
-keygen500_performance_boxplot.png: Key Generation, Signing, Combining, and Verification Times vs Number of Peers.
+- /src/go/: Go source code for Reed-Solomon encoding/decoding and quorum-based routing simulation.
+
+- /src/python/: Python source code for threshold cryptography operations.
+
+- /docs/: Contains the white paper (Os_Project-2.pdf).
+
+- benchmark_plot.png: Encoding vs Decoding Time vs Number of Quorums.
+
+- keygen500_performance_boxplot.png: Key Generation, Signing, Combining, and Verification Times vs Number of Peers.
 
 ### Requirements
 
