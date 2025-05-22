@@ -22,8 +22,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # Configuration for peer counts and number of runs
-PEER_COUNTS = [ 10, 50,100,500]
-NUM_RUNS = 5
+PEER_COUNTS = [ 5, 10,50,100,150]
+# PEER_COUNTS=[5,10,20,40,80,160]
+NUM_RUNS = 20
 
 # Color configuration for plots
 COLORS = {
@@ -134,69 +135,50 @@ def plot_performance():
     for sQ in PEER_COUNTS:
         perf = simulate(sQ, NUM_RUNS)
         if perf:
-            keygen_data.append(perf['keygen_times'])
-            sign_data.append(perf['sign_times'])
-            combine_data.append(perf['combine_times'])
-            verify_data.append(perf['verify_times'])
-    # print("keygen_data: \n",keygen_data)
-    # print("keygen_data: \n",combine_data)
-    # Calculate and print average times for each sQ
-    print("\nAverage Times (in seconds) for each Number of Peers (sQ):")
+            keygen_data.append([x * 1 for x in perf['keygen_times']])
+            sign_data.append([x * 1e3 for x in perf['sign_times']])
+            combine_data.append([x * 1e3 for x in perf['combine_times']])
+            verify_data.append([x * 1e3 for x in perf['verify_times']])
+
+    # Print average in ms
+    print("\nAverage Times (in milliseconds) for each Number of Peers (sQ):")
     for i, sQ in enumerate(PEER_COUNTS):
         avg_keygen = sum(keygen_data[i]) / len(keygen_data[i]) if keygen_data[i] else 0
         avg_sign = sum(sign_data[i]) / len(sign_data[i]) if sign_data[i] else 0
         avg_combine = sum(combine_data[i]) / len(combine_data[i]) if combine_data[i] else 0
         avg_verify = sum(verify_data[i]) / len(verify_data[i]) if verify_data[i] else 0
         print(f"sQ = {sQ}:")
-        print(f"  Average Key Generation Time: {avg_keygen:.6f} s")
-        print(f"  Average Signing Time: {avg_sign:.6f} s")
-        print(f"  Average Combining Time: {avg_combine:.8f} s")
-        print(f"  Average Verification Time: {avg_verify:.6f} s")
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 10))
-    
-    ax1.boxplot(keygen_data, labels=labels, patch_artist=True,
-                boxprops=dict(facecolor=COLORS['keygen'], color=COLORS['keygen']),
-                whiskerprops=dict(color=COLORS['keygen']),
-                capprops=dict(color=COLORS['keygen']),
-                medianprops=dict(color='black'))
-    ax1.set_title('Key Generation Time vs. Number of Peers in Quorum')
-    ax1.set_xlabel('Number of Peers in Quorum (sQ)')
-    ax1.set_ylabel('Time (seconds)')
-    ax1.grid(True)
-    
-    ax2.boxplot(sign_data, labels=labels, patch_artist=True,
-                boxprops=dict(facecolor=COLORS['signing'], color=COLORS['signing']),
-                whiskerprops=dict(color=COLORS['signing']),
-                capprops=dict(color=COLORS['signing']),
-                medianprops=dict(color='black'))
-    ax2.set_title('Signing Time (t+1 peers) vs. Number of Peers in Quorum')
-    ax2.set_xlabel('Number of Peers in Quorum (sQ)')
-    ax2.set_ylabel('Time (seconds)')
-    ax2.grid(True)
-    
-    ax3.boxplot(combine_data, labels=labels, patch_artist=True,
-                boxprops=dict(facecolor=COLORS['combining'], color=COLORS['combining']),
-                whiskerprops=dict(color=COLORS['combining']),
-                capprops=dict(color=COLORS['combining']),
-                medianprops=dict(color='black'))
-    ax3.set_title('Combining Time vs. Number of Peers in Quorum')
-    ax3.set_xlabel('Number of Peers in Quorum (sQ)')
-    ax3.set_ylabel('Time (seconds)')
-    ax3.grid(True)
-    
-    ax4.boxplot(verify_data, labels=labels, patch_artist=True,
-                boxprops=dict(facecolor=COLORS['verification'], color=COLORS['verification']),
-                whiskerprops=dict(color=COLORS['verification']),
-                capprops=dict(color=COLORS['verification']),
-                medianprops=dict(color='black'))
-    ax4.set_title('Verification Time vs. Number of Peers in Quorum')
-    ax4.set_xlabel('Number of Peers in Quorum (sQ)')
-    ax4.set_ylabel('Time (seconds)')
-    ax4.grid(True)
-    
-    plt.tight_layout()
-    plt.savefig('keygen500_performance_boxplot_Performance.png')
-    plt.close()
+        print(f"  Average Key Generation Time: {avg_keygen:.5f} s")
+        print(f"  Average Signing Time: {avg_sign:.5f} ms")
+        print(f"  Average Combining Time: {avg_combine:.5f} ms")
+        print(f"  Average Verification Time: {avg_verify:.5f} ms")
+
+    # Plot each metric separately and save
+    def save_plot(data, ylabel, color, filename):
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.boxplot(data, labels=labels, patch_artist=True,
+                   boxprops=dict(facecolor=color, color=color),
+                   whiskerprops=dict(color=color),
+                   capprops=dict(color=color),
+                   medianprops=dict(color='black'))
+        # ax.set_title(title)
+        ax.set_xlabel('Number of Peers in Quorum (sQ)')
+        ax.set_ylabel(ylabel)
+        ax.grid(True)
+        plt.tight_layout()
+        plt.savefig(filename)
+        plt.close()
+
+    # save_plot(keygen_data, 'Key Generation Time vs. Number of Peers in Quorum', 'Time (s)', COLORS['keygen'], 'keygen_time_final.png')
+    # save_plot(sign_data, 'Signing Time (t+1 peers) vs. Number of Peers in Quorum', 'Time (ms)', COLORS['signing'], 'sign_time_final.png')
+    # save_plot(combine_data, 'Combining Time vs. Number of Peers in Quorum', 'Time (ms)', COLORS['combining'], 'combine_time_final.png')
+    # save_plot(verify_data, 'Verification Time vs. Number of Peers in Quorum', 'Time (ms)', COLORS['verification'], 'verify_time_l.png')
+
+    save_plot(keygen_data, 'Time (s)', COLORS['keygen'], '20_keygen_time_final.png')
+    save_plot(sign_data, 'Time (ms)', COLORS['signing'], '20_sign_time_final.png')
+    save_plot(combine_data, 'Time (ms)', COLORS['combining'], '20_combine_time_final.png')
+    save_plot(verify_data, 'Time (ms)', COLORS['verification'], '20_verify_time_final.png')
+
 
 if __name__ == "__main__":
     plot_performance()
